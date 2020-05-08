@@ -9,11 +9,12 @@ button{
     display: block;
 }
 .menu{
-    position: absolute;
+    position: fixed;
     width: 100%;
     background-color: black;
     padding: 5px;
     text-align: right;
+    z-index: 1;
 }
 .add_employe{
     margin: 10px;
@@ -67,6 +68,9 @@ button{
     text-align: right;
     border-radius: 5px;
 }
+.employ_button:hover{
+    transform: scale(1.05);
+}
 .employ_button:nth-child(even){
     background-color:#999;
     color: honeydew;
@@ -76,8 +80,27 @@ button{
     background-color: lawngreen;
     right:10px;
     display: none;
+    padding: 5px;
+    border-radius: 15px;
 }
 .add_form input{
     display: block;
     margin: 5px;
+    text-align: center;
+    border-radius: 5px;
+}
+.add{
+    margin: auto;
+    background-color: black;
+    color: blanchedalmond;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding: 3px;
+}
+.add:hover{
+    transform: scale(1.2);
+}
+.add:active{
+    color: black;
+    background-color: blanchedalmond;
 }

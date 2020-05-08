@@ -48,7 +48,37 @@ var mediator = function(UICtrl){
         giveValues(myParam - 1);
     }
     passValue();
-
+    function verify(data){
+        if(data.name.length == 0
+            ||data.salary.length == 0
+            || data.age.length == 0
+        ){
+            window.alert("fill all details in the form");
+            return false;
+        }
+        else if(data.name.match(/[^A-Za-z ]+/g) != null){
+            window.alert("Name should only contain alphabets");
+            return false;
+        }
+        else if(data.salary<1)
+        {
+            window.alert("Salary should be greater the 1");
+            return false;
+        }
+        else if(data.age<1){
+            window.alert("Age should be greater the 1");
+            return false;
+        }
+        else if(data.age.split('.').length != 1)
+        {
+            window.alert("Age should be integer");
+            return false;
+        }
+        else{
+            console.log(data.age.split('.').length);
+            return true;
+        }
+    }
     DOM.updatebutton.addEventListener('click',function(){
         DOM.edit.style.display="block";
         DOM.container.style.display="none";
@@ -59,31 +89,35 @@ var mediator = function(UICtrl){
             salary:DOM.isalary.value,
             age:DOM.iage.value
         };
-        console.log(data);
-        var urlParams = new URLSearchParams(window.location.search);
-        var id = urlParams.get('id');
-       var add = await fetch('http://dummy.restapiexample.com/api/v1/update/'+id,{
-        method :"PUT",
-        mode: 'cors', 
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-             'Content-Type': 'application/json'
-         },
-        redirect: 'follow', 
-        referrerPolicy: 'no-referrer', 
-        body: JSON.stringify(data)
-       });
-        var check = await add.json();
-        if(check.status == "success"){
-            window.alert("updated success fully");
+        if(verify(data))
+        {
             DOM.edit.style.display="none";
             DOM.container.style.display="block";
-            DOM.age.textContent = data.age;
-            DOM.name.textContent = data.name;
-            DOM.salary.textContent = data.salary;
+            console.log(data);
+            var urlParams = new URLSearchParams(window. location.search);
+            var id = urlParams.get('id');
+            var add = await fetch('http://dummy.restapiexample.com/api/v1/update/'+id,{
+            method :"PUT",
+            mode: 'cors', 
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                 'Content-Type': 'application/json'
+             },
+            redirect: 'follow', 
+            referrerPolicy: 'no-referrer', 
+            body: JSON.stringify(data)
+            });
+            var check = await add.json();
+            if(check.status == "success"){
+                window.alert("updated success fully");
+                
+                DOM.age.textContent = data.age;
+                DOM.name.textContent = data.name;
+                DOM.salary.textContent = data.salary;
+            }
+            console.log(check);
         }
-        console.log(check);
     });
     DOM.cancel.addEventListener('click',function(){
         DOM.edit.style.display="none";

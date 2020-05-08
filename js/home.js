@@ -45,31 +45,71 @@ var mediater = function(UICtrl){
         }
     }
     getEmployee();
+    function verify(data){
+        if(data.name.length == 0
+            ||data.salary.length == 0
+            || data.age.length == 0
+        ){
+            window.alert("fill all details in the form");
+            return false;
+        }
+        else if(data.name.match(/[^A-Za-z ]+/g) != null){
+            window.alert("Name should only contain alphabets");
+            return false;
+        }
+        else if(data.salary<1)
+        {
+            window.alert("Salary should be greater the 1");
+            return false;
+        }
+        else if(data.age<1){
+            window.alert("Age should be greater the 1");
+            return false;
+        }
+        else if(data.age.split('.').length != 1)
+        {
+            window.alert("Age should be integer");
+            return false;
+        }
+        else{
+            console.log(data.age.split('.').length);
+            return true;
+        }
+    }
     Dom.add.addEventListener('click',async function(){
         var data = {
             name:Dom.name.value,
             salary:Dom.salary.value,
             age:Dom.age.value
         };
-        console.log(data);
-       var add = await fetch('http://dummy.restapiexample.com/api/v1/create',{
-        method :"POST",
-        mode: 'cors', 
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-             'Content-Type': 'application/json'
-         },
-        redirect: 'follow', 
-        referrerPolicy: 'no-referrer', 
-        body: JSON.stringify(data)
-       });
-        var check = await add.json();
-        console.log(check);
-        Dom.addform.style.display="none";
-        if(check.status =="success"){
-            window.alert('user added');
-            UICtrl.addList(document.querySelectorAll(".employ_button").length+1,Dom.name.value);
+        if(verify(data)){
+            Dom.name.value="";
+            Dom.salary.value="";
+            Dom.age.value="";
+            Dom.addform.style.display="none";
+             console.log(data);
+            var add = await fetch('http://dummy.restapiexample.com/api/v1/create',{
+             method :"POST",
+             mode: 'cors', 
+             cache: 'no-cache',
+             credentials: 'same-origin',
+             headers: {
+                  'Content-Type': 'application/json'
+              },
+             redirect: 'follow', 
+             referrerPolicy: 'no-referrer', 
+             body: JSON.stringify(data)
+            });
+             var check = await add.json();
+             console.log(check);
+             
+            if(check.status =="success"){
+                window.alert('user added');
+                UICtrl.addList(document.querySelectorAll(".employ_button").length+1,data.name);
+            }
+            else{
+                window.alert('Sorry failed');
+            }
         }
         // addList(document.querySelectorAll(".employ_button").length+1,Dom.name.value);
     });
