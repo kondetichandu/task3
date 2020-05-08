@@ -1,0 +1,51 @@
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: red;
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.details_head{
+    color: white;
+    text-align: center;
+    font-size: 20px;
+}
+.required{
+    float: left;
+    padding: 5px;
+
+}
+.employee{
+    text-align: right;
+    padding: 5px;
+}
+.update_button{
+    text-align: center;
+}
+.update{
+    cursor: pointer;
+    background-color: green;
+    border:0;
+    color: ivory;
+    padding: 3px;
+}
+.update:hover{
+    transform: scale(1.2);
+}
+.edit{
+    text-align: center;
+    background-color: lawngreen;
+    width:200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 5px;
+    display: none;
+}
+input{
+    text-align: center;
+}

@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+button{
+    background-color: white;
+    cursor: pointer;
+    display: block;
+}
+.menu{
+    position: absolute;
+    width: 100%;
+    background-color: black;
+    padding: 5px;
+    text-align: right;
+}
+.add_employe{
+    margin: 10px;
+    color: white;
+    background-color: black;
+    font-size: large;
+    cursor: pointer;
+    /* width: fit-content; */
+    margin-right: 20px;
+    display: inline;
+}
+.container{
+    position: absolute;
+    height: 80%;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    width: 60%;
+}
+.head_id,.head_name{
+    font-size: 20px;
+    color: white;
+    padding: 2px;
+
+}
+.head_id{
+    float: left;
+}
+ .head_name{
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: right;
+} 
+.employ_id,.employe_name{
+    display: inline;
+    font-size: 20px;
+}
+.employ_id{
+    float: left;
+}
+/*.employe_name{
+    float: right;
+} */
+.employ_button{
+    /* border: 1px solid gray; */
+    padding: 5px;
+    margin: 5px;
+    width: max-content;
+    width: 100%;
+    text-align: right;
+    border-radius: 5px;
+}
+.employ_button:nth-child(even){
+    background-color:#999;
+    color: honeydew;
+}
+.add_form{
+    position: absolute;
+    background-color: lawngreen;
+    right:10px;
+    display: none;
+}
+.add_form input{
+    display: block;
+    margin: 5px;
+}
